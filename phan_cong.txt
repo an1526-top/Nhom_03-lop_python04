@@ -1,0 +1,116 @@
+Nhóm 3
+Đề tài: Hệ Thống Quản Lý Học Bổng
+
+# Mô tả, phân tích yêu cầu
+# 1. Sinh viên đăng ký học bổng:
+#    - Sinh viên tìm hiểu thông tin các loại học bổng có sẵn (Học bổng khuyến khích học tập, Học bổng doanh nghiệp, Học bổng vượt khó).
+#    - Tiến hành nộp đơn đăng ký trực tuyến: chọn loại học bổng mong muốn, cập nhật các minh chứng đi kèm 
+#      [Bảng điểm GPA, Điểm rèn luyện, Giấy xác nhận hoàn cảnh khó khăn / Giấy chứng nhận hoạt động ngoại khóa...].
+
+# 2. Bộ phận Quản lý sinh viên / Phòng Công tác sinh viên (Giáo vụ):
+#    - Quản lý hồ sơ sinh viên: thêm, sửa, xóa, tra cứu thông tin sinh viên, lớp học, kết quả học tập.
+#    - Quản lý danh mục học bổng: thiết lập các tiêu chuẩn, điều kiện xét duyệt cho từng loại học bổng.
+#    - Kiểm tra thông tin hồ sơ, đối chiếu điểm trung bình, điểm rèn luyện, điều kiện ràng buộc của sinh viên với học bổng đăng ký.
+#    - Thực hiện xét duyệt hồ sơ: phê duyệt (đạt) hoặc từ chối (không đạt).
+
+# 3. Bộ phận Kế toán / Tài chính:
+#    - Quản lý danh sách sinh viên đã nhận học bổng để chuẩn bị kinh phí chi trả.
+#    - Theo dõi nguồn kinh phí cấp học bổng (từ nhà trường hoặc doanh nghiệp tài trợ).
+
+# 4. Chủ nhà trường / Ban Giám Hiệu (BGH):
+#    - Báo cáo thống kê tổng hợp: hôm nay hoặc trong đợt có bao nhiêu đơn đăng ký học bổng, tổng kinh phí cấp học bổng đã duyệt, 
+#      thống kê tỷ lệ sinh viên đạt học bổng theo từng khoa/lớp/loại học bổng.
+
+2. Thiết kế các lớp
+   Class SinhVien:
+       Mục đích: Dùng lưu trữ và quản lý thông tin sinh viên.
+       
+       Thuộc tính:
+           ma_sv: Mã sinh viên
+           ho_ten: Họ tên sinh viên
+           lop: Lớp học
+           diem_tb: Điểm trung bình
+           diem_ren_luyen: Điểm rèn luyện
+       Phương thức:
+           __init__(): Khởi tạo thông tin sinh viên
+           hien_thi(): Hiển thị thông tin sinh viên
+           cap_nhat(): Cập nhật thông tin sinh viên
+
+   Class HocBong:
+       Mục đích: Dùng để quản lý các loại học bổng.
+       
+       Thuộc tính:
+           ma_hb: Mã học bổng
+           ten_hb: Tên học bổng
+           gia_tri: Giá trị học bổng
+           diem_toi_thieu: Điểm trung bình tối thiểu
+           ren_luyen_toi_thieu: Điểm rèn luyện tối thiểu
+       Phương thức:
+           __init__(): Khởi tạo thông tin học bổng
+           hien_thi(): Hiển thị thông tin học bổng
+           cap_nhat(): Cập nhật thông tin học bổng
+           xet_dieu_kien(): Kiểm tra điều kiện nhận học bổng
+
+   Class DonDangKyHB:
+       Mục đích: Dùng quản lý đơn đăng ký học bổng của sinh viên
+       
+       Thuộc tính:
+           ma_don: Mã đơn đăng ký
+           sinh_vien: Thông tin sinh viên đăng ký
+           hoc_bong: Thông tin học bổng đăng ký
+           ngay_dk: Ngày đăng ký
+           trang_thai: Trạng thái đơn đăng ký
+       Phương thức:
+           __init__(): Khởi tạo thông tin đơn đăng ký
+           hien_thi(): Hiển thị thông tin đơn đăng ký
+           cap_nhat_trang_thai(): Cập nhật thông tin đơn đăng ký
+           huy_don(): Hủy đơn đăng ký học bổng
+
+   Class KetQuaHB:
+       Mục đích: Lớp này dùng để lưu trữ kết quả xét duyệt học bổng
+       
+       Thuộc tính:
+           ma_kq: Mã kết quả
+           sinh_vien: Thông tin sinh viên
+           hoc_bong: Thông tin học bổng
+           gia_tri: Giá trị học bổng được nhận
+           ket_qua: Kết quả xét duyệt
+       Phương thức:
+           __init__(): Khởi tạo thông tin kết quả
+           hien_thi(): Hiển thị thông tin kết quả xét duyệt
+           cap_nhat_kq(): Cập nhật thông tin kết quả
+
+   Class CanBo:
+       Mục đích: Lớp này dùng để quản lý thông tin cán bộ phụ trách học bổng
+       Thuộc tính:
+           ma_cb: Mã cán bộ
+           ho_ten: Họ tên cán bộ
+           chuc_vu: Chức vụ
+           tai_khoan: Tài khoản đăng nhập
+           mat_khau: Mật khẩu đăng nhập
+       Phương thức:
+           __init__(): Khởi tạo thông tin cán bộ
+           hien_thi(): Hiển thị thông tin cán bộ
+           dang_nhap(): Đăng nhập hệ thống
+           duyet_don(): Duyệt đơn đăng ký học bổng
+
+   Class QuanLyHocBong:
+       Mục đích: dùng để quản lý toàn bộ hoạt động của hệ thống học bổng
+       
+       Thuộc tính:
+           ds_sv: Danh sách sinh viên
+           ds_hb: Danh sách học bổng
+           ds_don: Danh sách đơn đăng ký
+           ds_ket_qua: Danh sách kết quả xét duyệt
+           ds_cb: Danh sách cán bộ
+       Phương thức:
+           them_sv(): Thêm sinh viên mới
+           xoa_sv(): Xóa sinh viên
+           tim_sv(): Tìm kiếm sinh viên theo mã
+           them_hb(): Thêm học bổng mới
+           tim_hb(): Kiếm học bổng theo mã
+           dk_hb(): Đăng ký học bổng cho sinh viên
+           xet_duyet_hb(): Xét duyệt đơn đăng ký học bổng
+           hien_thi_kq(): Hiển thị kết quả xét duyệt
+           thong_ke(): Thống kê số lượng sinh viên nhận học bổng và tổng giá trị học bổng
+"""
