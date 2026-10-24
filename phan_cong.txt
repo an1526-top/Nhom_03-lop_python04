@@ -113,4 +113,13 @@ Nhóm 3
            xet_duyet_hb(): Xét duyệt đơn đăng ký học bổng
            hien_thi_kq(): Hiển thị kết quả xét duyệt
            thong_ke(): Thống kê số lượng sinh viên nhận học bổng và tổng giá trị học bổng
-"""
+
+3. Vẽ lại luồng sử dụng phần mềm
++ Luồng 1: Sinh viên đăng ký học bổng
+Sinh viên chọn loại học bổng muốn nộp => Hệ thống mở giao diện form đăng ký => Sinh viên nhập thông tin và tải lên minh chứng (GPA, điểm rèn luyện, giấy tờ...) => Nhấn nút Lưu đơn đăng ký.
+
++ Luồng 2: Phòng Giáo vụ / Quản lý xét duyệt học bổng
+  Giáo vụ mở chức năng quản lý đơn đăng ký => Hệ thống hiển thị danh sách đơn chờ duyệt => Giáo vụ kiểm tra điều kiện (so sánh GPA, điểm rèn luyện thực tế của sinh viên với yêu cầu của học bổng) => Cập nhật trạng thái Phê duyệt / Từ chối => Lưu kết quả vào hệ thống.
+
++ Luồng 3: Ban Giám hiệu xem báo cáo thống kê
+  BGH chọn chức năng Thống kê - Báo cáo => Hệ thống tổng hợp số lượng đơn, tổng kinh phí đã cấp và xuất danh sách sinh viên nhận học bổng.
